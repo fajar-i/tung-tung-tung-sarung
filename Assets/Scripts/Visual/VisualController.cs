@@ -22,6 +22,34 @@ namespace ToughLoveArena.Visual
         public string BlockTrigger = "Block";
         public string KnockdownTrigger = "Knockdown";
 
+        [Header("Original Clip Lengths (Seconds)")]
+        [Tooltip("Panjang clip animasi Idle bawaan dari FBX")]
+        public float IdleClipLength = 2.03f;
+        [Tooltip("Panjang clip animasi Jalan Depan bawaan dari FBX")]
+        public float WalkFwdClipLength = 0.83f;
+        [Tooltip("Panjang clip animasi Jalan Belakang bawaan dari FBX")]
+        public float WalkBwdClipLength = 0.83f;
+        [Tooltip("Panjang clip animasi Lompat bawaan dari FBX")]
+        public float JumpClipLength = 1.0f;
+        [Tooltip("Panjang clip animasi Jongkok bawaan dari FBX")]
+        public float CrouchClipLength = 1.0f;
+        [Tooltip("Panjang clip animasi Serang Ringan bawaan dari FBX")]
+        public float LightAttackClipLength = 0.6f;
+        [Tooltip("Panjang clip animasi Serang Berat bawaan dari FBX")]
+        public float HeavyAttackClipLength = 1.2f;
+        [Tooltip("Panjang clip animasi Serang Spesial bawaan dari FBX")]
+        public float SpecialAttackClipLength = 0.8f;
+        [Tooltip("Panjang clip animasi Kena Serang bawaan dari FBX")]
+        public float HurtClipLength = 0.5f;
+        [Tooltip("Panjang clip animasi Tangkis bawaan dari FBX")]
+        public float BlockClipLength = 0.5f;
+        [Tooltip("Panjang clip animasi Jatuh bawaan dari FBX")]
+        public float KnockdownClipLength = 1.5f;
+
+        [Header("Manual Speed Adjustments")]
+        [Tooltip("Multiplier kecepatan tambahan untuk fine-tuning")]
+        public float GlobalSpeedMultiplier = 1f;
+
         private PlayerData _myData;
         private ActionState _lastVisualState;
 
@@ -94,58 +122,52 @@ namespace ToughLoveArena.Visual
                     break;
                 case ActionState.MoveForward:
                     CharacterAnimator.SetTrigger(WalkFwdTrigger);
-                    // Match walk animation length with logical tick duration (6 ticks = 0.1s at 60Hz)
-                    ScaleAnimatorClipSpeed(WalkFwdTrigger, 6);
+                    ScaleAnimatorClipSpeed(WalkFwdClipLength, 6);
                     break;
                 case ActionState.MoveBackward:
                     CharacterAnimator.SetTrigger(WalkBwdTrigger);
-                    ScaleAnimatorClipSpeed(WalkBwdTrigger, 6);
+                    ScaleAnimatorClipSpeed(WalkBwdClipLength, 6);
                     break;
                 case ActionState.Crouch:
                     CharacterAnimator.SetTrigger(CrouchTrigger);
                     break;
                 case ActionState.Jump:
                     CharacterAnimator.SetTrigger(JumpTrigger);
-                    ScaleAnimatorClipSpeed(JumpTrigger, 18);
+                    ScaleAnimatorClipSpeed(JumpClipLength, 18);
                     break;
                 case ActionState.AttackLight:
                     CharacterAnimator.SetTrigger(LightAttackTrigger);
-                    ScaleAnimatorClipSpeed(LightAttackTrigger, 9);
+                    ScaleAnimatorClipSpeed(LightAttackClipLength, 9);
                     break;
                 case ActionState.AttackHeavy:
                     CharacterAnimator.SetTrigger(HeavyAttackTrigger);
-                    ScaleAnimatorClipSpeed(HeavyAttackTrigger, 17);
+                    ScaleAnimatorClipSpeed(HeavyAttackClipLength, 17);
                     break;
                 case ActionState.AttackSpecial:
                     CharacterAnimator.SetTrigger(SpecialAttackTrigger);
-                    ScaleAnimatorClipSpeed(SpecialAttackTrigger, 22);
+                    ScaleAnimatorClipSpeed(SpecialAttackClipLength, 22);
                     break;
                 case ActionState.HitStun:
                     CharacterAnimator.SetTrigger(HurtTrigger);
-                    ScaleAnimatorClipSpeed(HurtTrigger, 12);
+                    ScaleAnimatorClipSpeed(HurtClipLength, 12);
                     break;
                 case ActionState.BlockStun:
                     CharacterAnimator.SetTrigger(BlockTrigger);
-                    ScaleAnimatorClipSpeed(BlockTrigger, 8);
+                    ScaleAnimatorClipSpeed(BlockClipLength, 8);
                     break;
                 case ActionState.Knockdown:
                     CharacterAnimator.SetTrigger(KnockdownTrigger);
-                    ScaleAnimatorClipSpeed(KnockdownTrigger, 35);
+                    ScaleAnimatorClipSpeed(KnockdownClipLength, 35);
                     break;
             }
         }
 
-        private void ScaleAnimatorClipSpeed(string stateName, int logicalDurationTicks)
+        private void ScaleAnimatorClipSpeed(float originalClipLength, int logicalDurationTicks)
         {
             float targetSecs = logicalDurationTicks / 60.0f;
-            
-            // Fetch current clip length from animator's active state
-            AnimatorStateInfo stateInfo = CharacterAnimator.GetCurrentAnimatorStateInfo(0);
-            float currentClipLen = stateInfo.length;
-            
-            if (currentClipLen > 0.01f)
+            if (originalClipLength > 0.01f)
             {
-                CharacterAnimator.speed = currentClipLen / targetSecs;
+                CharacterAnimator.speed = (originalClipLength / targetSecs) * GlobalSpeedMultiplier;
             }
         }
     }
