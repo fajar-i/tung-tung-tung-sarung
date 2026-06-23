@@ -84,9 +84,13 @@ namespace ToughLoveArena.Core
 
             CombatController.ProcessAttackInputs(Player1, P1Input);
 
-            // Player 2 (If not AI)
+            // Player 2 / AI
             P2Input.Clear();
-            if (!IsAiOpponent)
+            if (IsAiOpponent)
+            {
+                ToughLoveArena.AI.SimpleAI.UpdateAIInput(Player2, Player1, P2Input);
+            }
+            else
             {
                 if (UnityEngine.Input.GetKey(KeyCode.LeftArrow)) P2Input.MoveDirection = -1;
                 else if (UnityEngine.Input.GetKey(KeyCode.RightArrow)) P2Input.MoveDirection = 1;
