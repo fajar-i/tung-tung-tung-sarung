@@ -98,7 +98,12 @@ namespace ToughLoveArena.Core
 
         private void ResolveMovement()
         {
-            // Placeholder for movement
+            // Update player positions/states
+            MovementController.UpdatePlayerMovement(Player1, P1Input, GridMin, GridMax);
+            MovementController.UpdatePlayerMovement(Player2, P2Input, GridMin, GridMax);
+
+            // Resolve grid overlapping
+            MovementController.ResolvePushing(Player1, Player2, GridMin, GridMax);
         }
 
         private void ResolveCombat()
