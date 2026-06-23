@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using ToughLoveArena.Core;
+using ToughLoveArena.Input;
 
 namespace ToughLoveArena.Core
 {
@@ -18,6 +19,9 @@ namespace ToughLoveArena.Core
         public PlayerData Player2;
 
         public bool IsAiOpponent = false;
+
+        public PlayerInputBuffer P1Input = new PlayerInputBuffer();
+        public PlayerInputBuffer P2Input = new PlayerInputBuffer();
 
         private float _tickRate = 1f / 60f; // 60 FPS Logical Ticks
         private bool _isGameRunning = false;
@@ -68,7 +72,28 @@ namespace ToughLoveArena.Core
 
         private void ProcessInputs()
         {
-            // Placeholder for inputs
+            // Player 1
+            P1Input.Clear();
+            if (UnityEngine.Input.GetKey(KeyCode.A)) P1Input.MoveDirection = -1;
+            else if (UnityEngine.Input.GetKey(KeyCode.D)) P1Input.MoveDirection = 1;
+            if (UnityEngine.Input.GetKeyDown(KeyCode.W)) P1Input.JumpPressed = true;
+            if (UnityEngine.Input.GetKey(KeyCode.S)) P1Input.CrouchHeld = true;
+            if (UnityEngine.Input.GetKeyDown(KeyCode.F)) P1Input.AttackLightPressed = true;
+            if (UnityEngine.Input.GetKeyDown(KeyCode.G)) P1Input.AttackHeavyPressed = true;
+            if (UnityEngine.Input.GetKeyDown(KeyCode.H)) P1Input.AttackSpecialPressed = true;
+
+            // Player 2 (If not AI)
+            P2Input.Clear();
+            if (!IsAiOpponent)
+            {
+                if (UnityEngine.Input.GetKey(KeyCode.LeftArrow)) P2Input.MoveDirection = -1;
+                else if (UnityEngine.Input.GetKey(KeyCode.RightArrow)) P2Input.MoveDirection = 1;
+                if (UnityEngine.Input.GetKeyDown(KeyCode.UpArrow)) P2Input.JumpPressed = true;
+                if (UnityEngine.Input.GetKey(KeyCode.DownArrow)) P2Input.CrouchHeld = true;
+                if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad1) || UnityEngine.Input.GetKeyDown(KeyCode.I)) P2Input.AttackLightPressed = true;
+                if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad2) || UnityEngine.Input.GetKeyDown(KeyCode.O)) P2Input.AttackHeavyPressed = true;
+                if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad3) || UnityEngine.Input.GetKeyDown(KeyCode.P)) P2Input.AttackSpecialPressed = true;
+            }
         }
 
         private void ResolveMovement()
