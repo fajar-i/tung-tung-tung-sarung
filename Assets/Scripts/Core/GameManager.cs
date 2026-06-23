@@ -82,6 +82,8 @@ namespace ToughLoveArena.Core
             if (UnityEngine.Input.GetKeyDown(KeyCode.G)) P1Input.AttackHeavyPressed = true;
             if (UnityEngine.Input.GetKeyDown(KeyCode.H)) P1Input.AttackSpecialPressed = true;
 
+            CombatController.ProcessAttackInputs(Player1, P1Input);
+
             // Player 2 (If not AI)
             P2Input.Clear();
             if (!IsAiOpponent)
@@ -93,6 +95,8 @@ namespace ToughLoveArena.Core
                 if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad1) || UnityEngine.Input.GetKeyDown(KeyCode.I)) P2Input.AttackLightPressed = true;
                 if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad2) || UnityEngine.Input.GetKeyDown(KeyCode.O)) P2Input.AttackHeavyPressed = true;
                 if (UnityEngine.Input.GetKeyDown(KeyCode.Keypad3) || UnityEngine.Input.GetKeyDown(KeyCode.P)) P2Input.AttackSpecialPressed = true;
+
+                CombatController.ProcessAttackInputs(Player2, P2Input);
             }
         }
 
@@ -108,7 +112,8 @@ namespace ToughLoveArena.Core
 
         private void ResolveCombat()
         {
-            // Placeholder for combat
+            CombatController.UpdatePlayerCombat(Player1, Player2, GridMin, GridMax);
+            CombatController.UpdatePlayerCombat(Player2, Player1, GridMin, GridMax);
         }
     }
 }
