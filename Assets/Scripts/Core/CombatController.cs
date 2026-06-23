@@ -51,9 +51,6 @@ namespace ToughLoveArena.Core
                     ResolveHitDetection(attacker, defender, minGrid, maxGrid);
                 }
             }
-            
-            // Resolve timers for hitstun / blockstun / knockdown
-            ResolveStunTimers(attacker);
         }
 
         private static void ResolveHitDetection(PlayerData attacker, PlayerData defender, int minGrid, int maxGrid)
@@ -104,21 +101,6 @@ namespace ToughLoveArena.Core
                 
                 // Clear attacker active hitboxes so it doesn't double-hit on next active frame
                 attacker.AttackActiveTicks = 0; 
-            }
-        }
-
-        private static void ResolveStunTimers(PlayerData p)
-        {
-            if (p.State == ActionState.HitStun || p.State == ActionState.BlockStun || p.State == ActionState.Knockdown)
-            {
-                if (p.StateTimer > 0)
-                {
-                    p.StateTimer--;
-                    if (p.StateTimer == 0)
-                    {
-                        p.State = ActionState.Idle;
-                    }
-                }
             }
         }
     }

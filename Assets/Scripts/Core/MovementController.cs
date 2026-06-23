@@ -9,30 +9,26 @@ namespace ToughLoveArena.Core
             if (p.StateTimer > 0)
             {
                 p.StateTimer--;
-                if (p.StateTimer == 0)
+                if (p.StateTimer > 0)
                 {
-                    // Resolve finish of walk or jump states
-                    if (p.State == ActionState.MoveForward || p.State == ActionState.MoveBackward)
+                    // If mid-jump, calculate Y trajectory
+                    if (p.State == ActionState.Jump)
                     {
-                        p.State = ActionState.Idle;
+                        // Arc trajectory over 18 ticks: peak Y=2 in middle ticks
+                        int elapsed = 18 - p.StateTimer;
+                        if (elapsed <= 6) p.GridY = 1;
+                        else if (elapsed <= 12) p.GridY = 2;
+                        else p.GridY = 1;
                     }
-                    else if (p.State == ActionState.Jump)
-                    {
-                        p.State = ActionState.Idle;
-                        p.GridY = 0;
-                    }
+                    return; // State is still active
                 }
                 
-                // If mid-jump, calculate Y trajectory
+                // StateTimer just hit 0, resolve state reset
                 if (p.State == ActionState.Jump)
                 {
-                    // Arc trajectory over 18 ticks: peak Y=2 in middle ticks
-                    int elapsed = 18 - p.StateTimer;
-                    if (elapsed <= 6) p.GridY = 1;
-                    else if (elapsed <= 12) p.GridY = 2;
-                    else p.GridY = 1;
+                    p.GridY = 0;
                 }
-                return;
+                p.State = ActionState.Idle;
             }
 
             // Crouching state

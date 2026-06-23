@@ -31,6 +31,10 @@ namespace ToughLoveArena.Visual
             {
                 CharacterAnimator = GetComponentInChildren<Animator>();
             }
+            if (CharacterAnimator != null)
+            {
+                CharacterAnimator.applyRootMotion = false;
+            }
         }
 
         private void Update()
@@ -40,6 +44,12 @@ namespace ToughLoveArena.Visual
             
             _myData = (TargetPlayerId == 1) ? GameManager.Instance.Player1 : GameManager.Instance.Player2;
             if (_myData == null) return;
+
+            // Force root motion off
+            if (CharacterAnimator != null && CharacterAnimator.applyRootMotion)
+            {
+                CharacterAnimator.applyRootMotion = false;
+            }
 
             // 1. Interpolate visual position
             float cellWidth = GameManager.Instance.CellWidth;
