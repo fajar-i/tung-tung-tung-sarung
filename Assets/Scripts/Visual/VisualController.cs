@@ -46,6 +46,23 @@ namespace ToughLoveArena.Visual
         [Tooltip("Panjang clip animasi Jatuh bawaan dari FBX")]
         public float KnockdownClipLength = 2.3f;
 
+        [Header("Speed Synchronization Options")]
+        [Tooltip("Jika TRUE, animasi akan dipercepat/diperlambat agar pas dengan durasi logical tick. Jika FALSE, menggunakan manual speed di bawah.")]
+        public bool SyncSpeedToTicks = false;
+
+        [Header("Manual Animation Speeds (Used when SyncSpeedToTicks is False)")]
+        public float IdleSpeed = 1f;
+        public float WalkFwdSpeed = 1.2f;
+        public float WalkBwdSpeed = 1.2f;
+        public float JumpSpeed = 1f;
+        public float CrouchSpeed = 1f;
+        public float LightAttackSpeed = 2f;
+        public float HeavyAttackSpeed = 1.5f;
+        public float SpecialAttackSpeed = 1.8f;
+        public float HurtSpeed = 1.5f;
+        public float BlockSpeed = 1.2f;
+        public float KnockdownSpeed = 1.2f;
+
         [Header("Manual Speed Adjustments")]
         [Tooltip("Multiplier kecepatan tambahan untuk fine-tuning")]
         public float GlobalSpeedMultiplier = 1f;
@@ -119,55 +136,64 @@ namespace ToughLoveArena.Visual
             {
                 case ActionState.Idle:
                     CharacterAnimator.SetTrigger(IdleTrigger);
+                    ScaleAnimatorClipSpeed(IdleClipLength, 1, IdleSpeed);
                     break;
                 case ActionState.MoveForward:
                     CharacterAnimator.SetTrigger(WalkFwdTrigger);
-                    ScaleAnimatorClipSpeed(WalkFwdClipLength, 6);
+                    ScaleAnimatorClipSpeed(WalkFwdClipLength, 6, WalkFwdSpeed);
                     break;
                 case ActionState.MoveBackward:
                     CharacterAnimator.SetTrigger(WalkBwdTrigger);
-                    ScaleAnimatorClipSpeed(WalkBwdClipLength, 6);
+                    ScaleAnimatorClipSpeed(WalkBwdClipLength, 6, WalkBwdSpeed);
                     break;
                 case ActionState.Crouch:
                     CharacterAnimator.SetTrigger(CrouchTrigger);
+                    ScaleAnimatorClipSpeed(CrouchClipLength, 1, CrouchSpeed);
                     break;
                 case ActionState.Jump:
                     CharacterAnimator.SetTrigger(JumpTrigger);
-                    ScaleAnimatorClipSpeed(JumpClipLength, 18);
+                    ScaleAnimatorClipSpeed(JumpClipLength, 18, JumpSpeed);
                     break;
                 case ActionState.AttackLight:
                     CharacterAnimator.SetTrigger(LightAttackTrigger);
-                    ScaleAnimatorClipSpeed(LightAttackClipLength, 9);
+                    ScaleAnimatorClipSpeed(LightAttackClipLength, 9, LightAttackSpeed);
                     break;
                 case ActionState.AttackHeavy:
                     CharacterAnimator.SetTrigger(HeavyAttackTrigger);
-                    ScaleAnimatorClipSpeed(HeavyAttackClipLength, 17);
+                    ScaleAnimatorClipSpeed(HeavyAttackClipLength, 17, HeavyAttackSpeed);
                     break;
                 case ActionState.AttackSpecial:
                     CharacterAnimator.SetTrigger(SpecialAttackTrigger);
-                    ScaleAnimatorClipSpeed(SpecialAttackClipLength, 22);
+                    ScaleAnimatorClipSpeed(SpecialAttackClipLength, 22, SpecialAttackSpeed);
                     break;
                 case ActionState.HitStun:
                     CharacterAnimator.SetTrigger(HurtTrigger);
-                    ScaleAnimatorClipSpeed(HurtClipLength, 12);
+                    ScaleAnimatorClipSpeed(HurtClipLength, 12, HurtSpeed);
                     break;
                 case ActionState.BlockStun:
                     CharacterAnimator.SetTrigger(BlockTrigger);
-                    ScaleAnimatorClipSpeed(BlockClipLength, 8);
+                    ScaleAnimatorClipSpeed(BlockClipLength, 8, BlockSpeed);
                     break;
                 case ActionState.Knockdown:
                     CharacterAnimator.SetTrigger(KnockdownTrigger);
-                    ScaleAnimatorClipSpeed(KnockdownClipLength, 35);
+                    ScaleAnimatorClipSpeed(KnockdownClipLength, 35, KnockdownSpeed);
                     break;
             }
         }
 
-        private void ScaleAnimatorClipSpeed(float originalClipLength, int logicalDurationTicks)
+        private void ScaleAnimatorClipSpeed(float originalClipLength, int logicalDurationTicks, float manualSpeed)
         {
-            float targetSecs = logicalDurationTicks / 60.0f;
-            if (originalClipLength > 0.01f)
+            if (SyncSpeedToTicks)
             {
-                CharacterAnimator.speed = (originalClipLength / targetSecs) * GlobalSpeedMultiplier;
+                float targetSecs = logicalDurationTicks / 60.0f;
+                if (originalClipLength > 0.01f)
+                {
+                    CharacterAnimator.speed = (originalClipLength / targetSecs) * GlobalSpeedMultiplier;
+                }
+            }
+            else
+            {
+                CharacterAnimator.speed = manualSpeed * GlobalSpeedMultiplier;
             }
         }
     }
