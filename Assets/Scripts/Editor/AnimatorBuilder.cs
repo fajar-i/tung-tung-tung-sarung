@@ -37,7 +37,7 @@ namespace ToughLoveArena.Editor
             controller.AddParameter("Knockdown", AnimatorControllerParameterType.Trigger);
 
             // Load and extract the animation clips from FBX files
-            AnimationClip idleClip = LoadClip("Assets/Pro Sword and Shield Pack/sword and shield idle.fbx");
+            AnimationClip idleClip = LoadClip("Assets/Pro Sword and Shield Pack/sword and shield idle (4).fbx");
             AnimationClip walkFwdClip = LoadClip("Assets/Pro Sword and Shield Pack/sword and shield walk.fbx");
             AnimationClip walkBwdClip = LoadClip("Assets/Pro Sword and Shield Pack/sword and shield walk (2).fbx");
             AnimationClip jumpClip = LoadClip("Assets/Pro Sword and Shield Pack/sword and shield jump.fbx");

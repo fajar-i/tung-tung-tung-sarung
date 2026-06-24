@@ -832,7 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToughLoveArena.Visual.VisualController
   TargetPlayerId: 1
   VisualLerpSpeed: 15
-  CharacterAnimator: {fileID: 1304821869}
+  CharacterAnimator: {fileID: 0}
   IdleTrigger: Idle
   WalkFwdTrigger: WalkForward
   WalkBwdTrigger: WalkBackward
@@ -844,23 +844,18 @@ MonoBehaviour:
   HurtTrigger: Hurt
   BlockTrigger: Block
   KnockdownTrigger: Knockdown
-  IdleClipLength: 2.03
-  WalkFwdClipLength: 0.83
-  WalkBwdClipLength: 0.83
-  JumpClipLength: 1
-  CrouchClipLength: 1
-  LightAttackClipLength: 0.6
-  HeavyAttackClipLength: 1.2
-  SpecialAttackClipLength: 0.8
-  HurtClipLength: 0.5
-  BlockClipLength: 0.5
-  KnockdownClipLength: 1.5
+  IdleClipLength: 2.533
+  WalkFwdClipLength: 1.1
+  WalkBwdClipLength: 1.267
+  JumpClipLength: 0.833
+  CrouchClipLength: 0.567
+  LightAttackClipLength: 1.5
+  HeavyAttackClipLength: 3.533
+  SpecialAttackClipLength: 1.2
+  HurtClipLength: 0.767
+  BlockClipLength: 0.567
+  KnockdownClipLength: 2.3
   GlobalSpeedMultiplier: 1
---- !u!95 &1304821869 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2b0e992ec7b06b344a7a2e44ca416881, type: 3}
-  m_PrefabInstance: {fileID: 726070563}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1325962669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -997665979000770847, guid: 0f879966375a6df4699ea832cb2f2e7c, type: 3}
@@ -958,7 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToughLoveArena.Visual.VisualController
   TargetPlayerId: 2
   VisualLerpSpeed: 15
-  CharacterAnimator: {fileID: 1559375342}
+  CharacterAnimator: {fileID: 0}
   IdleTrigger: Idle
   WalkFwdTrigger: WalkForward
   WalkBwdTrigger: WalkBackward
@@ -970,17 +965,17 @@ MonoBehaviour:
   HurtTrigger: Hurt
   BlockTrigger: Block
   KnockdownTrigger: Knockdown
-  IdleClipLength: 2.03
-  WalkFwdClipLength: 0.83
-  WalkBwdClipLength: 0.83
-  JumpClipLength: 1
-  CrouchClipLength: 1
-  LightAttackClipLength: 0.6
-  HeavyAttackClipLength: 1.2
-  SpecialAttackClipLength: 0.8
-  HurtClipLength: 0.5
-  BlockClipLength: 0.5
-  KnockdownClipLength: 1.5
+  IdleClipLength: 2.533
+  WalkFwdClipLength: 1.1
+  WalkBwdClipLength: 1.267
+  JumpClipLength: 0.833
+  CrouchClipLength: 0.567
+  LightAttackClipLength: 1.5
+  HeavyAttackClipLength: 3.533
+  SpecialAttackClipLength: 1.2
+  HurtClipLength: 0.767
+  BlockClipLength: 0.567
+  KnockdownClipLength: 2.3
   GlobalSpeedMultiplier: 1
 --- !u!114 &1559375339
 MonoBehaviour:
@@ -1019,11 +1014,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.1, z: 0}
---- !u!95 &1559375342 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2b0e992ec7b06b344a7a2e44ca416881, type: 3}
-  m_PrefabInstance: {fileID: 1544478896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1586034561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6005692700215558579, guid: 0f879966375a6df4699ea832cb2f2e7c, type: 3}

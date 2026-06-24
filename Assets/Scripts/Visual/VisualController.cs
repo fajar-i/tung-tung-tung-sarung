@@ -24,27 +24,27 @@ namespace ToughLoveArena.Visual
 
         [Header("Original Clip Lengths (Seconds)")]
         [Tooltip("Panjang clip animasi Idle bawaan dari FBX")]
-        public float IdleClipLength = 2.03f;
+        public float IdleClipLength = 2.533f;
         [Tooltip("Panjang clip animasi Jalan Depan bawaan dari FBX")]
-        public float WalkFwdClipLength = 0.83f;
+        public float WalkFwdClipLength = 1.1f;
         [Tooltip("Panjang clip animasi Jalan Belakang bawaan dari FBX")]
-        public float WalkBwdClipLength = 0.83f;
+        public float WalkBwdClipLength = 1.267f;
         [Tooltip("Panjang clip animasi Lompat bawaan dari FBX")]
-        public float JumpClipLength = 1.0f;
+        public float JumpClipLength = 0.833f;
         [Tooltip("Panjang clip animasi Jongkok bawaan dari FBX")]
-        public float CrouchClipLength = 1.0f;
+        public float CrouchClipLength = 0.567f;
         [Tooltip("Panjang clip animasi Serang Ringan bawaan dari FBX")]
-        public float LightAttackClipLength = 0.6f;
+        public float LightAttackClipLength = 1.5f;
         [Tooltip("Panjang clip animasi Serang Berat bawaan dari FBX")]
-        public float HeavyAttackClipLength = 1.2f;
+        public float HeavyAttackClipLength = 3.533f;
         [Tooltip("Panjang clip animasi Serang Spesial bawaan dari FBX")]
-        public float SpecialAttackClipLength = 0.8f;
+        public float SpecialAttackClipLength = 1.2f;
         [Tooltip("Panjang clip animasi Kena Serang bawaan dari FBX")]
-        public float HurtClipLength = 0.5f;
+        public float HurtClipLength = 0.767f;
         [Tooltip("Panjang clip animasi Tangkis bawaan dari FBX")]
-        public float BlockClipLength = 0.5f;
+        public float BlockClipLength = 0.567f;
         [Tooltip("Panjang clip animasi Jatuh bawaan dari FBX")]
-        public float KnockdownClipLength = 1.5f;
+        public float KnockdownClipLength = 2.3f;
 
         [Header("Manual Speed Adjustments")]
         [Tooltip("Multiplier kecepatan tambahan untuk fine-tuning")]
