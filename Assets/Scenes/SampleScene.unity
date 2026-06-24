@@ -855,7 +855,19 @@ MonoBehaviour:
   HurtClipLength: 0.767
   BlockClipLength: 0.567
   KnockdownClipLength: 2.3
-  GlobalSpeedMultiplier: 1
+  SyncSpeedToTicks: 0
+  IdleSpeed: 1
+  WalkFwdSpeed: 1.2
+  WalkBwdSpeed: 1.2
+  JumpSpeed: 1
+  CrouchSpeed: 1
+  LightAttackSpeed: 2
+  HeavyAttackSpeed: 1.5
+  SpecialAttackSpeed: 1.8
+  HurtSpeed: 1.5
+  BlockSpeed: 1.2
+  KnockdownSpeed: 1.2
+  GlobalSpeedMultiplier: 0.8
 --- !u!4 &1325962669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -997665979000770847, guid: 0f879966375a6df4699ea832cb2f2e7c, type: 3}
@@ -976,7 +988,19 @@ MonoBehaviour:
   HurtClipLength: 0.767
   BlockClipLength: 0.567
   KnockdownClipLength: 2.3
-  GlobalSpeedMultiplier: 1
+  SyncSpeedToTicks: 0
+  IdleSpeed: 1
+  WalkFwdSpeed: 1.2
+  WalkBwdSpeed: 1.2
+  JumpSpeed: 1
+  CrouchSpeed: 1
+  LightAttackSpeed: 2
+  HeavyAttackSpeed: 1.5
+  SpecialAttackSpeed: 1.8
+  HurtSpeed: 1.5
+  BlockSpeed: 1.2
+  KnockdownSpeed: 1.2
+  GlobalSpeedMultiplier: 0.8
 --- !u!114 &1559375339
 MonoBehaviour:
   m_ObjectHideFlags: 0
